@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "VJ Bachat - घर का हिसाब व बचत डायरी",
+  "short_name": "VJ Bachat",
+  "description": "VJ Bachat: दैनिक घरेलू खर्च, दूध, सब्ज़ी, गाड़ी, किराना, उधार और मासिक बचत डायरी।",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1c1917",
+  "theme_color": "#1c1917",
+  "icons": [
+    {
+      "src": "/assets/aistudio/file_000000003a8882088b578c6fc0259415_0adcefd9.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

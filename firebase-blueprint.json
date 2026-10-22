@@ -1,0 +1,182 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The authenticated user's unique identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when account was created"
+        }
+      },
+      "required": ["userId", "name"]
+    },
+    "MonthlyRecord": {
+      "title": "MonthlyRecord",
+      "description": "Monthly ledger record holding summary and configuration",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "monthKey": {
+          "type": "string",
+          "description": "Month in YYYY-MM format"
+        },
+        "salaryCycleDay": {
+          "type": "number",
+          "description": "Salary cycle cutoff day"
+        },
+        "startingCash": {
+          "type": "number",
+          "description": "Starting budget or income"
+        },
+        "defaultMilkLitre": {
+          "type": "number",
+          "description": "Default daily milk in litres"
+        },
+        "defaultMilkRate": {
+          "type": "number",
+          "description": "Default milk rate per litre"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last modified timestamp"
+        }
+      },
+      "required": ["userId", "monthKey"]
+    },
+    "ExpenseItem": {
+      "title": "ExpenseItem",
+      "description": "Individual expense entry in the ledger",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User ID who owns this expense"
+        },
+        "monthKey": {
+          "type": "string",
+          "description": "Month key YYYY-MM"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date YYYY-MM-DD"
+        },
+        "categoryId": {
+          "type": "string",
+          "description": "Category identifier"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "Category name in Hindi or English"
+        },
+        "itemName": {
+          "type": "string",
+          "description": "Custom typed item name"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount in INR"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity e.g. litres"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement"
+        },
+        "rate": {
+          "type": "number",
+          "description": "Rate per unit"
+        },
+        "recipient": {
+          "type": "string",
+          "description": "Person or shopkeeper paid"
+        },
+        "paymentMode": {
+          "type": "string",
+          "description": "Payment mode Cash, UPI, Card, Udhar"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional memo or notes"
+        },
+        "isChutti": {
+          "type": "boolean",
+          "description": "Whether milk was absent"
+        }
+      },
+      "required": ["userId", "monthKey", "date", "amount"]
+    },
+    "UdharItem": {
+      "title": "UdharItem",
+      "description": "Money lent to friends, neighbors or relatives",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "personName": {
+          "type": "string",
+          "description": "Name of the person borrowed money"
+        },
+        "relation": {
+          "type": "string",
+          "description": "Relationship: दोस्त, पड़ोसी, रिश्तेदार"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount lent in INR"
+        },
+        "status": {
+          "type": "string",
+          "description": "pending or returned"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date given"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional notes"
+        }
+      },
+      "required": ["userId", "personName", "amount", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data"
+    },
+    "/users/{userId}/months/{monthKey}": {
+      "schema": "MonthlyRecord",
+      "description": "Monthly record summary and configuration"
+    },
+    "/users/{userId}/months/{monthKey}/expenses/{expenseId}": {
+      "schema": "ExpenseItem",
+      "description": "Individual daily expenses"
+    },
+    "/users/{userId}/udhars/{udharId}": {
+      "schema": "UdharItem",
+      "description": "Money lent records"
+    }
+  }
+}

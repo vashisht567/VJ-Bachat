@@ -1,0 +1,6 @@
+{
+  "name": "Ghar Ka Hisaab - Daily & Monthly Expense Tracker",
+  "description": "Daily household expense tracker with milk, vegetable, auto/travel logs, calendar view, customizable heads, and monthly bill calculator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
